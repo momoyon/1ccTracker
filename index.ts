@@ -3,6 +3,7 @@ const debugDiv: HTMLElement | null = document.getElementById('debug');
 
 const canvas: HTMLCanvasElement = document.getElementById('mainCanvas') as HTMLCanvasElement;
 const downloadButton: HTMLAnchorElement = document.getElementById('download') as HTMLAnchorElement;
+const downloadSaveButton: HTMLAnchorElement = document.getElementById('downloadSave') as HTMLAnchorElement;
 const ctx: CanvasRenderingContext2D | null = canvas.getContext("2d");
 
 canvas.style.width="800px";
@@ -821,6 +822,7 @@ function drawGame(game: Game, baseX: number, baseY: number, drawDifficulties: bo
 
 if (ctx) {
     downloadButton.addEventListener('click', download);
+	downloadSaveButton.addEventListener('click', downloadSave);
 
     canvas.addEventListener('click', function(event) {
 	event.preventDefault();
@@ -1391,6 +1393,30 @@ function drawScreen() {
 let checkboxState : Map<string, boolean> = new Map();
 
 let state : Map<string, BoxObject> = new Map();
+// Source - https://stackoverflow.com/a/18197511
+// Posted by Matěj Pokorný, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-03-15, License - CC BY-SA 3.0
+
+function downloadFile(filename: string, text: string) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+function downloadSave() {
+	let json = JSON.stringify(Array.from(state.entries()));
+
+	downloadFile("save.json", json);
+}
 
 function getBoxFromState(box: [Path2D, string]) : BoxObject {
     if (state.has(box[1])) {
