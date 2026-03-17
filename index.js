@@ -897,9 +897,9 @@ function updateMisses(e) {
         drawScreen();
     }
 }
-let transparentPng = true;
-let showFighting = true;
-let showLegend = true;
+let transparentPng = false;
+let showFighting = false;
+let showLegend = false;
 let easyMode = false;
 function updateCanvasHeight() {
     let height = 640;

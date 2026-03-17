@@ -1076,9 +1076,9 @@ function updateMisses(e: Event) {
     }
 }
 
-let transparentPng = true;
-let showFighting = true;
-let showLegend = true;
+let transparentPng = false;
+let showFighting = false;
+let showLegend = false;
 let easyMode = false;
 
 function updateCanvasHeight() {
