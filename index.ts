@@ -5,6 +5,9 @@ const canvas: HTMLCanvasElement = document.getElementById('mainCanvas') as HTMLC
 const downloadButton: HTMLAnchorElement = document.getElementById('download') as HTMLAnchorElement;
 const downloadSaveButton: HTMLAnchorElement = document.getElementById('downloadSave') as HTMLAnchorElement;
 const ctx: CanvasRenderingContext2D | null = canvas.getContext("2d");
+const saveFileUploadForm: HTMLElement | null = document.getElementById("saveFileUploadForm");
+const fileInput = document.getElementById('saveFileUploadFileInput');
+
 
 canvas.style.width="800px";
 canvas.style.height="640px";
@@ -821,6 +824,34 @@ function drawGame(game: Game, baseX: number, baseY: number, drawDifficulties: bo
 }
 
 if (ctx) {
+
+	if (saveFileUploadForm) {
+		console.log("Added event listener for submit event!");
+		saveFileUploadForm.addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			const file = (fileInput as HTMLInputElement).files![0];
+
+			if (!file) {
+				window.alert("Please select the save.json file!");
+				return;
+			}
+
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				const content = e.target!.result;
+
+				if (typeof content === 'string') {
+					state = new Map(JSON.parse(content));
+					drawScreen();
+				}
+
+			};
+
+			reader.readAsText(file);
+			
+		});
+	}
     downloadButton.addEventListener('click', download);
 	downloadSaveButton.addEventListener('click', downloadSave);
 

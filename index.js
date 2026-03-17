@@ -5,6 +5,8 @@ const canvas = document.getElementById('mainCanvas');
 const downloadButton = document.getElementById('download');
 const downloadSaveButton = document.getElementById('downloadSave');
 const ctx = canvas.getContext("2d");
+const saveFileUploadForm = document.getElementById("saveFileUploadForm");
+const fileInput = document.getElementById('saveFileUploadFileInput');
 canvas.style.width = "800px";
 canvas.style.height = "640px";
 // Prevent selection of text while interacting with the canvas
@@ -678,6 +680,26 @@ function drawGame(game, baseX, baseY, drawDifficulties = false) {
     drawUILine(baseX - 0.5 + (charX * boxWidth), lastY + boxWidth + 0.5, boxWidth - 8, 2);
 }
 if (ctx) {
+    if (saveFileUploadForm) {
+        console.log("Added event listener for submit event!");
+        saveFileUploadForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const file = fileInput.files[0];
+            if (!file) {
+                window.alert("Please select the save.json file!");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const content = e.target.result;
+                if (typeof content === 'string') {
+                    state = new Map(JSON.parse(content));
+                    drawScreen();
+                }
+            };
+            reader.readAsText(file);
+        });
+    }
     downloadButton.addEventListener('click', download);
     downloadSaveButton.addEventListener('click', downloadSave);
     canvas.addEventListener('click', function (event) {
