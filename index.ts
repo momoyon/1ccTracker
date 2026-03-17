@@ -824,7 +824,6 @@ function drawGame(game: Game, baseX: number, baseY: number, drawDifficulties: bo
 }
 
 if (ctx) {
-
 	if (saveFileUploadForm) {
 		console.log("Added event listener for submit event!");
 		saveFileUploadForm.addEventListener('submit', function(event) {
@@ -942,9 +941,6 @@ function setupControls() {
     const textColour: HTMLInputElement | null = document.getElementById('textColour') as HTMLInputElement;
     textColour.addEventListener('change', updateTextColour);
 
-    const bgCheckbox: HTMLInputElement | null = document.getElementById('useBackgroundCheckbox') as HTMLInputElement;
-    bgCheckbox.addEventListener('change', updateBgStatus);
-
     const fightingCheckbox: HTMLInputElement | null = document.getElementById('fightingCheckbox') as HTMLInputElement;
     fightingCheckbox.addEventListener('change', updateFightingStatus);
 
@@ -958,7 +954,6 @@ function setupControls() {
     let checkboxValue = getCheckboxFromState('bg');
     if (checkboxValue !== null) {
 	transparentPng = checkboxValue;
-	bgCheckbox.checked = checkboxValue;
     }
 
     checkboxValue = getCheckboxFromState('fighting');
@@ -1110,11 +1105,11 @@ function updateCanvasHeight() {
     drawScreen();
 }
 
-function updateBgStatus(e: Event) {
-    transparentPng = (e.target! as HTMLInputElement).checked;
-    setCheckboxInState('bg', transparentPng);
-    drawScreen();
-}
+// function updateBgStatus(e: Event) {
+//     transparentPng = (e.target! as HTMLInputElement).checked;
+//     setCheckboxInState('bg', transparentPng);
+//     drawScreen();
+// }
 
 function updateLegendStatus(e: Event) {
     showLegend = (e.target! as HTMLInputElement).checked;

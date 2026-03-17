@@ -781,8 +781,6 @@ function setupControls() {
     cellColour.addEventListener('change', updateCellColour);
     const textColour = document.getElementById('textColour');
     textColour.addEventListener('change', updateTextColour);
-    const bgCheckbox = document.getElementById('useBackgroundCheckbox');
-    bgCheckbox.addEventListener('change', updateBgStatus);
     const fightingCheckbox = document.getElementById('fightingCheckbox');
     fightingCheckbox.addEventListener('change', updateFightingStatus);
     const easyCheckbox = document.getElementById('easyCheckbox');
@@ -793,7 +791,6 @@ function setupControls() {
     let checkboxValue = getCheckboxFromState('bg');
     if (checkboxValue !== null) {
         transparentPng = checkboxValue;
-        bgCheckbox.checked = checkboxValue;
     }
     checkboxValue = getCheckboxFromState('fighting');
     if (checkboxValue !== null) {
@@ -923,11 +920,11 @@ function updateCanvasHeight() {
     }
     drawScreen();
 }
-function updateBgStatus(e) {
-    transparentPng = e.target.checked;
-    setCheckboxInState('bg', transparentPng);
-    drawScreen();
-}
+// function updateBgStatus(e: Event) {
+//     transparentPng = (e.target! as HTMLInputElement).checked;
+//     setCheckboxInState('bg', transparentPng);
+//     drawScreen();
+// }
 function updateLegendStatus(e) {
     showLegend = e.target.checked;
     setCheckboxInState('legend', showLegend);

@@ -7,7 +7,7 @@
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <title>Touhou 1CC Tracker</title>
+    <title>Touhou 1CC Tracker (Fork by momoyon)</title>
     <style>
       @font-face {
 	  font-family: "touhouFont";
@@ -37,10 +37,10 @@
 	  gap: 10px;
       }
       body {
-	  background-color:  #fefbe9;
+	  background-color:  #181818;
       }
       div {
-	  color: #183a1d;
+	  color: #DDDDDD;
       }
       * {
 	  box-sizing: border-box;
@@ -56,8 +56,9 @@
   </style>
 </head>
   <body>
-    <div style="font-family: 'touhouFont'; font-size: 32px">TOUHOU 1CC TRACKER</div>
+    <div style="font-family: 'touhouFont'; font-size: 32px">TOUHOU 1CC TRACKER (FORK BY MOMOYON)</div>
     <div style="font-family: 'touhouFontMini'; font-size: 16px">1.0</div><br/>
+	<div>Fork of <a href="https://github.com/doopu/1ccTracker/">Touhou 1CC Tracker</a></div>
     <hr>
     <div id="app">
       <div>
@@ -66,8 +67,8 @@
 	<div id="parentDiv">
 	  <canvas id="mainCanvas" width="800" height="640">Your browser is too outdated to use Touhou 1CC Generator, please update at your earliest convenience.</canvas>
 	</div>
+
 	<div id="controls">
-	  <div id="debug">(Double-)Click a square!</div>
 	  <input type="checkbox" id="doneCheckbox" disabled>
 	  <label for="doneCheckbox">Fill with default colour?</label>
 	  <input type="checkbox" id="verticalCheckbox" disabled>
@@ -141,7 +142,6 @@
 		</form>
 	    <div>
 	      <input type="checkbox" id="useBackgroundCheckbox" checked>
-	      <label for="useBackgroundCheckbox">Transparent PNG?</label>
 	      <br/>
 	      <input type="checkbox" id="fightingCheckbox" checked>
 	      <label for="fightingCheckbox">Show extra games?</label>
