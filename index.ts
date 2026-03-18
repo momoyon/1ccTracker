@@ -9,8 +9,13 @@ const saveFileUploadForm: HTMLElement | null = document.getElementById("saveFile
 const fileInput = document.getElementById('saveFileUploadFileInput');
 
 
-canvas.style.width="800px";
-canvas.style.height="640px";
+const WIDTH =  800;
+const HEIGHT = 640;
+
+let miniFontSize = 15;
+
+canvas.style.width=`${WIDTH}px`;
+canvas.style.height=`${HEIGHT}px`;
 
 // Prevent selection of text while interacting with the canvas
 canvas.onselectstart = function () {
@@ -22,8 +27,8 @@ if (ctx) {
     // Keeping for posterity - canvas scaling tech, which
     // doesn't work across browsers or OSes and certainly
     // not for our use-case of creating 800x640 images...
-    canvas.width = Math.floor(800 * scale);
-    canvas.height = Math.floor(640 * scale);
+    canvas.width = Math.floor(WIDTH * scale);
+    canvas.height = Math.floor(HEIGHT * scale);
     ctx.scale(scale, scale);
 }
 
@@ -307,13 +312,13 @@ function drawBoxContentsAux(x: number,
 	// Draw the little bits and pieces
 	// Draw miss/bomb/starting counts
 	if (misses) {
-	    drawText(misses, x + 2, y + 7, 'left', "16px touhouFontMini", textColour);
+	    drawText(misses, x + 2, y + 7, 'left', `${miniFontSize}px touhouFont`, textColour);
 	}
 	if (bombs) {
-	    drawText(bombs, x + 7, y + 7, 'left', "16px touhouFontMini", textColour);
+	    drawText(bombs, x + 7, y + 7, 'left', `${miniFontSize}px touhouFont`, textColour);
 	}
 	if (lives) {
-	    drawText(lives, x + 16, y + 7, 'right', "16px touhouFontMini", textColour);
+	    drawText(lives, x + 16, y + 7, 'right', `${miniFontSize}px touhouFont`, textColour);
 	}
 
 	// No vertical?
@@ -328,13 +333,13 @@ function drawBoxContentsAux(x: number,
 
 	// No focus / pacifist / unique
 	if (focus) {
-	    drawText("F", x + 2, y + 15, 'left', "16px touhouFontMini", textColour);
+	    drawText("F", x + 2, y + 15, 'left', `${miniFontSize}px touhouFont`, textColour);
 	}
 	if (pacifist) {
-	    drawText("P", x + 7, y + 15, 'left', "16px touhouFontMini", textColour);
+	    drawText("P", x + 7, y + 15, 'left', `${miniFontSize}px touhouFont`, textColour);
 	}
 	if (unique) {
-	    drawText("U", x + 12, y + 15, 'left', "16px touhouFontMini", textColour);
+	    drawText("U", x + 12, y + 15, 'left', `${miniFontSize}px touhouFont`, textColour);
 	}
     }
 }
@@ -401,8 +406,8 @@ class Game {
     }
 }
 
-const htrp = new Game("HRTP", "rgba(210, 60, 255, 1.0)", "LHN".split(''), [new Character("", ["ma", "j"])]);
-const soew = new Game("SOEW", "rgba(32, 51, 255, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b", "c"])]);
+const htrp = new Game("HRTP", "rgba(210, 60, 255, 1.0)", "LHN".split(''), [new Character("", ["MA", "J"])]);
+const soew = new Game("SOEW", "rgba(32, 51, 255, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B", "C"])]);
 const podd = new Game("PODD", "rgba(255, 92, 92, 1.0)", "LHN".split(''), [new Character("R"),
 									  new Character("MI"),
 									  new Character("M"),
@@ -412,23 +417,23 @@ const podd = new Game("PODD", "rgba(255, 92, 92, 1.0)", "LHN".split(''), [new Ch
 									  new Character("RI"),
 									  new Character("CH"),
 									  new Character("YM")]);
-const ls = new Game("LS", "rgba(73, 250, 76, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b"]),
-					  new Character("M", ["a", "b"])]);
+const ls = new Game("LS", "rgba(73, 250, 76, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B"]),
+					  new Character("M", ["A", "B"])]);
 const ms = new Game("MS", "rgba(194, 36, 128, 1.0)", "XLHN".split(''), [new Character("R"),
 					  new Character("M"),
 					  new Character("MI"),
 					  new Character("YK")]);
-const eosd = new Game("EOSD", "rgba(255, 51, 18, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b"]),
-					      new Character("M", ["a", "b"])]);
+const eosd = new Game("EOSD", "rgba(255, 51, 18, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B"]),
+					      new Character("M", ["A", "B"])]);
 
 const stb = new Game("STB", "rgba(99, 44, 0, 1.0)", ["85", "66"], [new Character("AY")]);
 const ds = new Game("DS", "rgba(10, 34, 119, 1.0)", ["108", "58"], [new Character("AY"), new Character("HA")]);
 const isc = new Game("ISC", "rgba(99, 44, 0, 1.0)", ["NI", "C"], [new Character("SJ")]);
 const vd = new Game("VD", "rgba(163, 73, 164, 1.0)", ["103", "C"], [new Character("SM")]);
 
-const pcb = new Game("PCB", "rgba(255, 127, 191, 1.0)", "PXLHN".split(''), [new Character("R", ["a", "b"]),
-							new Character("M", ["a", "b"]),
-							new Character("S", ["a", "b"])]);
+const pcb = new Game("PCB", "rgba(255, 127, 191, 1.0)", "PXLHN".split(''), [new Character("R", ["A", "B"]),
+							new Character("M", ["A", "B"]),
+							new Character("S", ["A", "B"])]);
 
 const imp = new Game("IN", "rgba(196, 101, 0, 1.0)", ["X", "B-L", "B-H", "B-N", "A-L", "A-H", "A-N"], [new Character("BT"),
 										      new Character("MT"),
@@ -458,15 +463,15 @@ const pofv = new Game("POFV", "rgba(16, 15, 107, 1.0)", "XLHN".split(''), [new C
 							 new Character("K"),
 							 new Character("E")]);
 
-const mof = new Game("MOF", "rgba(255, 168, 0, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b", "c"]),
-									 new Character("M", ["a", "b", "c"])]);
+const mof = new Game("MOF", "rgba(255, 168, 0, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B", "C"]),
+									 new Character("M", ["A", "B", "C"])]);
 
-const sa = new Game("SA", "rgba(0, 201, 109, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b", "c"]),
-									 new Character("M", ["a", "b", "c"])]);
+const sa = new Game("SA", "rgba(0, 201, 109, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B", "C"]),
+									 new Character("M", ["A", "B", "C"])]);
 
-const ufo = new Game("UFO", "rgba(127, 191, 255, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b"]),
-									   new Character("M", ["a", "b"]),
-									   new Character("SN", ["a", "b"])]);
+const ufo = new Game("UFO", "rgba(127, 191, 255, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B"]),
+									   new Character("M", ["A", "B"]),
+									   new Character("SN", ["A", "B"])]);
 
 const gfw = new Game("GFW", "rgba(127, 253, 255, 1.0)", "LHN".split(''), [new Character("A1"),
 									  new Character("A2"),
@@ -476,33 +481,41 @@ const gfw = new Game("GFW", "rgba(127, 253, 255, 1.0)", "LHN".split(''), [new Ch
 									  new Character("C2"),
 									  new Character("EX")]);
 
-const td = new Game("TD", "rgba(255, 191, 127, 1.0)", "XLHN".split(''), [new Character("R", ["e1", "e2"]),
-									 new Character("M", ["e1", "e2"]),
-									 new Character("SN", ["e1", "e2"]),
-									 new Character("Y", ["e1", "e2"])]);
+const td = new Game("TD", "rgba(255, 191, 127, 1.0)", "XLHN".split(''), [new Character("R", ["E1", "E2"]),
+									 new Character("M", ["E1", "E2"]),
+									 new Character("SN", ["E1", "E2"]),
+									 new Character("Y", ["E1", "E2"])]);
 
-const ddc = new Game("DDC", "rgba(123, 95, 135, 1.0)", "XLHN".split(''), [new Character("R", ["a", "b"]),
-									   new Character("M", ["a", "b"]),
-									   new Character("S", ["a", "b"])]);
+const ddc = new Game("DDC", "rgba(123, 95, 135, 1.0)", "XLHN".split(''), [new Character("R", ["A", "B"]),
+									   new Character("M", ["A", "B"]),
+									   new Character("S", ["A", "B"])]);
 
-const lolk = new Game("LOLK", "rgba(159, 21, 41, 1.0)", "XLHN".split(''), [new Character("R", ["p", "l"]),
-									   new Character("M", ["p", "l"]),
-									   new Character("SN", ["p", "l"]),
-									   new Character("RS", ["p", "l"])]);
+const lolk = new Game("LOLK", "rgba(159, 21, 41, 1.0)", "XLHN".split(''), [new Character("R", ["P", "L"]),
+									   new Character("M", ["P", "L"]),
+									   new Character("SN", ["P", "L"]),
+									   new Character("RS", ["P", "L"])]);
 
-const hsifs = new Game("HSIFS", "rgba(255, 127, 39, 1.0)", "XLHN".split(''), [new Character("R", ["sp", "sm", "f", "w"]),
-									      new Character("C", ["sp", "sm", "f", "w"]),
-									      new Character("AY", ["sp", "sm", "f", "w"]),
-									      new Character("M", ["sp", "sm", "f", "w"])]);
+const hsifs = new Game("HSIFS", "rgba(255, 127, 39, 1.0)", "XLHN".split(''), [
+	                                      new Character("R", ["SP", "SM", "F", "W"]),
+									      new Character("C", ["SP", "SM", "F", "W"]),
+									      new Character("AY", ["SP", "SM", "F", "W"]),
+									      new Character("M", ["SP", "SM", "F", "W"])]);
 
-const wbawc = new Game("WBAWC", "rgba(224, 66, 44, 1.0)", "XLHN".split(''), [new Character("R", ["w", "o", "e"]),
-									     new Character("M", ["w", "o", "e"]),
-									     new Character("Y", ["w", "o", "e"])]);
+const wbawc = new Game("WBAWC", "rgba(224, 66, 44, 1.0)", "XLHN".split(''), [
+	                                     new Character("R", ["W", "O", "E"]),
+									     new Character("M", ["W", "O", "E"]),
+									     new Character("Y", ["W", "O", "E"])]);
 
-const um = new Game("UM", "rgba(0, 201, 109, 1.0)", "XLHN".split(''), [new Character("R", ["e1", "e2"]),
-								       new Character("M", ["e1", "e2"]),
-								       new Character("S", ["e1", "e2"]),
-								       new Character("SN", ["e1", "e2"])]);
+const um = new Game("UM", "rgba(0, 201, 109, 1.0)", "XLHN".split(''), [
+									   new Character("R", ["E1", "E2"]),
+								       new Character("M", ["E1", "E2"]),
+								       new Character("S", ["E1", "E2"]),
+								       new Character("SN", ["E1", "E2"])]);
+const fw = new Game("FW", "rgba(0, 200, 34, 1.0)", "XLHN".split(''), 
+					[
+						new Character("R", ["R", "G", "B"]),
+						new Character("M", ["R", "G", "B"]),
+					 ]);
 
 const iamp = new Game("IAMP", "rgba(78, 22, 86, 1.0)", "LHN".split(''), [new Character("R"),
 									 new Character("M"),
@@ -579,7 +592,7 @@ const gi = new Game("GI", "rgba(131, 5, 5, 1.0)", "HN".split(''), [new Character
 								       new Character("KA"),
 								       new Character("MU"),
 								       new Character("J"),
-								       new Character("FL", ["a", "b", "c"])]);
+								       new Character("FL", ["A", "B", "C"])]);
 
 let lastX = 0;
 let lastY = 0;
@@ -587,10 +600,10 @@ let lastY = 0;
 function drawText(text: string, x: number, y: number, align: CanvasTextAlign = 'left', font: string = "16px touhouFont", colour: string = "black") {
     x -= 0.5; // Dumb hack for Windows
     if (ctx) {
-	ctx.font = font;
-	ctx.textAlign = align;
-	ctx.fillStyle = colour;
-	ctx.fillText(text, x, y - 1);
+		ctx.font = font;
+		ctx.textAlign = align;
+		ctx.fillStyle = colour;
+		ctx.fillText(text, x, y - 1);
     }
 }
 
@@ -617,22 +630,20 @@ function drawDot(colour: string, x: number, y: number, width: number = 2) {
 let boxes : [Path2D, string][] = [];
 
 function drawGame(game: Game, baseX: number, baseY: number, drawDifficulties: boolean = false) {
-
-
     // Except for certain games, we can just draw a difficulties-by-subcharacters box grid
     let width = 0;
     // Expand out the subcharacters while we're at it
     let expandedChars = [];
     for (let character of game.characters) {
-	if (character.subcharacters.length > 0) {
-	    width += character.subcharacters.length;
-	    for (let subcharacter of character.subcharacters) {
-		expandedChars.push(character.name + subcharacter);
-	    }
-	} else {
-	    width += 1;
-	    expandedChars.push(character.name);
-	}
+		if (character.subcharacters.length > 0) {
+			width += character.subcharacters.length;
+			for (let subcharacter of character.subcharacters) {
+			expandedChars.push(character.name + subcharacter);
+			}
+		} else {
+			width += 1;
+			expandedChars.push(character.name);
+		}
     }
 
     // Easy mode toggle need special work
@@ -712,47 +723,47 @@ function drawGame(game: Game, baseX: number, baseY: number, drawDifficulties: bo
     let x = 0;
     let y = 0;
     for (let character of expandedChars) {
-	y = 0;
-	for (let difficulty of difficulties) {
-	    // Some games need to skip boxes...
-	    let skipBox = false;
-	    let skipDraw = false;
-	    skipBox = skipBox || (game.name === 'GFW' && character === 'EX' && difficulty !== 'N');
-	    skipBox = skipBox || (game.name === 'LOLK' && !character.endsWith('l') && difficulty === 'X');
-	    skipBox = skipBox || (game.name === 'HSIFS' && !character.endsWith('sp') && difficulty === 'X');
-	    skipBox = skipBox || (game.name === 'TD' && character.endsWith('2') && difficulty === 'X');
-	    skipBox = skipBox || (game.name === 'UM' && character.endsWith('2') && difficulty === 'X');
+		y = 0;
+		for (let difficulty of difficulties) {
+			// Some games need to skip boxes...
+			let skipBox = false;
+			let skipDraw = false;
+			skipBox = skipBox || (game.name === 'GFW' && character === 'EX' && difficulty !== 'N');
+			skipBox = skipBox || (game.name === 'LOLK' && !character.endsWith('l') && difficulty === 'X');
+			skipBox = skipBox || (game.name === 'HSIFS' && !character.endsWith('sp') && difficulty === 'X');
+			skipBox = skipBox || (game.name === 'TD' && character.endsWith('2') && difficulty === 'X');
+			skipBox = skipBox || (game.name === 'UM' && character.endsWith('2') && difficulty === 'X');
 
-	    skipDraw = (game.name === 'GFW' && character === 'EX' && difficulty === 'N');
-	    if (easyMode) {
-		skipDraw = skipDraw || (game.name === 'GFW' && character === 'C2' && difficulty === 'E');
-	    } else {
-		skipDraw = skipDraw || (game.name === 'GFW' && character === 'C2' && difficulty === 'N');
-	    }
+			skipDraw = (game.name === 'GFW' && character === 'EX' && difficulty === 'N');
+			if (easyMode) {
+			skipDraw = skipDraw || (game.name === 'GFW' && character === 'C2' && difficulty === 'E');
+			} else {
+			skipDraw = skipDraw || (game.name === 'GFW' && character === 'C2' && difficulty === 'N');
+			}
 
-	    if (!skipBox)
-	    {
-		let yDraw = y;
-		if (game.name === 'GFW' && character === 'EX' && difficulty === 'N' && easyMode) {
-		    yDraw += 1;
+			if (!skipBox)
+			{
+			let yDraw = y;
+			if (game.name === 'GFW' && character === 'EX' && difficulty === 'N' && easyMode) {
+				yDraw += 1;
+			}
+			let box : Path2D = new Path2D();
+			box.rect(baseX + (x * boxWidth) + 0.5, baseY + (yDraw * boxWidth) + 0.5, boxWidth - 1, boxWidth - 1);
+			let boxName = game.name + '-' + character + '-' + difficulty;
+			boxes.push([box, boxName]);
+
+			drawBoxContents(baseX + (x * boxWidth), baseY + (yDraw * boxWidth), boxName, game.colour);
+			if (!skipDraw) {
+				drawBox(baseX + (x * boxWidth), baseY + (yDraw * boxWidth), boxWidth, boxWidth, 1);
+			}
+
+			}
+
+			lastY = baseY + (y * boxWidth);
+			y++;
 		}
-		let box : Path2D = new Path2D();
-		box.rect(baseX + (x * boxWidth) + 0.5, baseY + (yDraw * boxWidth) + 0.5, boxWidth - 1, boxWidth - 1);
-		let boxName = game.name + '-' + character + '-' + difficulty;
-		boxes.push([box, boxName]);
-
-		drawBoxContents(baseX + (x * boxWidth), baseY + (yDraw * boxWidth), boxName, game.colour);
-		if (!skipDraw) {
-		    drawBox(baseX + (x * boxWidth), baseY + (yDraw * boxWidth), boxWidth, boxWidth, 1);
-		}
-
-	    }
-
-	    lastY = baseY + (y * boxWidth);
-	    y++;
-	}
-	lastX = baseX + (x * boxWidth);
-	x++;
+		lastX = baseX + (x * boxWidth);
+		x++;
     }
 
     // Draw outer box, except for annoying games like LOLK, GFW and HSIFS.
@@ -776,47 +787,47 @@ function drawGame(game: Game, baseX: number, baseY: number, drawDifficulties: bo
     // Draw characters
     let charX = 0;
     for (let character of game.characters) {
-	if (character.subcharacters.length > 0) {
-	    let lineWidth = 1;
-	    let xAdjust = 0;
-	    let yAdjust = 0.5;
-	    // If this is the first character, we need a long thick bar at the start..
-	    if (charX == 0) {
-		lineWidth = 2;
-		xAdjust = -0.5;
-		yAdjust = 0.5;
-	    }
-	    drawUILine(xAdjust + (charX * boxWidth) + baseX,
-		       yAdjust + lastY + boxWidth,
-		       boxWidth - 2,
-		       lineWidth);
+		if (character.subcharacters.length > 0) {
+			let lineWidth = 1;
+			let xAdjust = 0;
+			let yAdjust = 0.5;
+			// If this is the first character, we need a long thick bar at the start..
+			if (charX == 0) {
+			lineWidth = 2;
+			xAdjust = -0.5;
+			yAdjust = 0.5;
+			}
+			drawUILine(xAdjust + (charX * boxWidth) + baseX,
+				   yAdjust + lastY + boxWidth,
+				   boxWidth - 2,
+				   lineWidth);
 
-	    drawText(character.name, baseX + (charX * boxWidth) + 2, lastY + (boxWidth) + 14);
-	    for (let subcharacter of character.subcharacters) {
-		drawText(subcharacter, baseX + (charX * boxWidth) + 2, lastY + (boxWidth) + 7, 'left', "16px touhouFontMini");
+			drawText(character.name, baseX + (charX * boxWidth) + 2, lastY + (boxWidth) + 14);
+			for (let subcharacter of character.subcharacters) {
+				drawText(subcharacter, baseX + (charX * boxWidth) + 2, lastY + (boxWidth) + 7, 'left', `${miniFontSize}px touhouFont`);
+				charX += 1;
+			}
+			charX -= 1;
+		} else {
+			// If this is the first chracter, we need a thick short bar at the start, otherwise a thin one
+			let lineWidth = 1;
+			let xAdjust = 1;
+			let yAdjust = 0.5;
+			let textAdjust = 0;
+			if (charX == 0) {
+			lineWidth = 2;
+			xAdjust = 0.5;
+			}
+			if (game.name === 'GFW' && character.name === 'EX') {
+			textAdjust = 1;
+			} else {
+			// We draw the GFW EX line ourselves
+			drawUILine(xAdjust + baseX - 1 + (charX * boxWidth), lastY + boxWidth, boxWidth - 8 + yAdjust, lineWidth)
+			}
+
+			drawText(character.name, textAdjust + baseX + (charX * boxWidth) + 2, lastY + (boxWidth) + 8);
+		}
 		charX += 1;
-	    }
-	    charX -= 1;
-	} else {
-	    // If this is the first chracter, we need a thick short bar at the start, otherwise a thin one
-	    let lineWidth = 1;
-	    let xAdjust = 1;
-	    let yAdjust = 0.5;
-	    let textAdjust = 0;
-	    if (charX == 0) {
-		lineWidth = 2;
-		xAdjust = 0.5;
-	    }
-	    if (game.name === 'GFW' && character.name === 'EX') {
-		textAdjust = 1;
-	    } else {
-		// We draw the GFW EX line ourselves
-		drawUILine(xAdjust + baseX - 1 + (charX * boxWidth), lastY + boxWidth, boxWidth - 8 + yAdjust, lineWidth)
-	    }
-
-	    drawText(character.name, textAdjust + baseX + (charX * boxWidth) + 2, lastY + (boxWidth) + 8);
-	}
-	charX += 1;
     }
     // Draw closing bar
     drawUILine(baseX - 0.5 + (charX * boxWidth), lastY + boxWidth + 0.5, boxWidth - 8, 2);
@@ -1082,24 +1093,12 @@ let showLegend = false;
 let easyMode = false;
 
 function updateCanvasHeight() {
-    let height = 640;
-    if (!showFighting && !easyMode) {
-	height = 460;
-    }
-
-    if (easyMode && !showFighting) {
-	height = 460;
-	height += 5.5 * boxWidth;
-    }
-
-    if (easyMode && showFighting) {
-	height += 7.5 * boxWidth;
-    }
+    let height = HEIGHT;
 
     canvas.height = height;
     canvas.style.height = height + "px";
     if (ctx) {
-	ctx.translate(0.5, 0.5);
+		ctx.translate(0.5, 0.5);
     }
 
     drawScreen();
@@ -1317,9 +1316,9 @@ function drawLegend() {
 	drawText("ASDFGHJKL", textOffset + 5, yOffset + 26);
 	drawText("ZXCVBNM", textOffset + 5, yOffset + 32);
 
-	drawText("18", topLeft + 10.5 + boxWidth * 4, yOffset + 13, 'left', "16px touhouFontMini");
-	drawText("1", topLeft + 24.5 + boxWidth * 4, yOffset + 13 + boxWidth / 2, 'left', "16px touhouFontMini");
-	drawText("8", topLeft + 24.5 + boxWidth * 4, yOffset + 13 + boxWidth / 2 + 6, 'left', "16px touhouFontMini");
+	drawText("18", topLeft + 10.5 + boxWidth * 4, yOffset + 13, 'left', `${miniFontSize}px touhouFont`);
+	drawText("1", topLeft + 24.5 + boxWidth * 4, yOffset + 13 + boxWidth / 2, 'left', `${miniFontSize}px touhouFont`);
+	drawText("8", topLeft + 24.5 + boxWidth * 4, yOffset + 13 + boxWidth / 2 + 6, 'left', `${miniFontSize}px touhouFont`);
 	drawBox(topLeft + 5.5 + boxWidth * 4, yOffset + 14, boxWidth, boxWidth, 1.0);
 
 	drawBoxContentsAux(topLeft + 5.5 + boxWidth * 6, yOffset + 14, false, "0", "0", "1", true, true, true, true, "#FFFFFF", "#000000", "#FFFFFF");
@@ -1391,6 +1390,8 @@ function drawScreen() {
 
     drawGame(wbawc, lastX + 2 * boxWidth, yOffset + 21 * boxWidth, true);
     drawGame(um, lastX + boxWidth, yOffset + 21 * boxWidth);
+
+	drawGame(fw, 2, yOffset + 28 * boxWidth, true);
 
     if (easyMode) {
 	yOffset += boxWidth;
