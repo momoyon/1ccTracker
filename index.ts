@@ -513,8 +513,8 @@ const um = new Game("UM", "rgba(0, 201, 109, 1.0)", "XLHN".split(''), [
 								       new Character("SN", ["E1", "E2"])]);
 const fw = new Game("FW", "rgba(0, 200, 34, 1.0)", "XLHN".split(''), 
 					[
-						new Character("R", ["R1", "R2", "G1", "G2", "B1", "B2"]),
-						new Character("M", ["R1", "R2", "G1", "G2", "B1", "B2"]),
+						new Character("R", ["R1", "R2", "G1", "G2", "B1", "B2", "Y1", "Y2"]),
+						new Character("M", ["R1", "R2", "G1", "G2", "B1", "B2", "Y1", "Y2"]),
 					 ]);
 
 const iamp = new Game("IAMP", "rgba(78, 22, 86, 1.0)", "LHN".split(''), [new Character("R"),
